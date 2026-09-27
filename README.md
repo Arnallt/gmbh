@@ -58,4 +58,8 @@ To add a chapter, register a scene with `addScene(id, build)` in `components/wor
 
 ## Deploy
 
-The page prerenders as static content. On Vercel, import the repo and deploy with the defaults.
+The site is a static export (`output: "export"`), published to GitHub Pages by `.github/workflows/pages.yml` on every push to `main`.
+
+- **Live URL:** https://arnallt.github.io/gmbh/
+- **One-time setup:** in the repo, go to Settings → Pages → Build and deployment → Source, and choose **GitHub Actions**.
+- **Base path:** the workflow sets `PAGES_BASE_PATH` (`/gmbh`). Leave it unset for local dev or for hosting at a domain root.
