@@ -63,6 +63,7 @@ export default function Intro() {
       try { await document.fonts.load(`600 100px ${family}`); } catch {}
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       W = window.innerWidth; H = window.innerHeight;
+      if (W < 2 || H < 2) { leave(); return; }
       canvas.width = W * dpr; canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const fs = Math.min(W * 0.26, H * 0.42);
@@ -111,7 +112,7 @@ export default function Intro() {
       if (t > TOTAL && !leaving) leave();
     };
 
-    build();
+    build().catch(leave);
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" || e.key === "Enter" || e.key === " ") leave(); };
     const onWheel = () => leave();
     window.addEventListener("keydown", onKey);
